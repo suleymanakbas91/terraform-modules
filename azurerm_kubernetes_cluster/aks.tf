@@ -38,11 +38,16 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   dns_prefix          = local.dns_prefix
   kubernetes_version  = var.kubernetes_version
 
-  agent_pool_profile {
-    name            = "agentpool"
-    count           = var.agent_count
+  timeouts {
+    create = var.create_timeout
+    update = var.update_timeout
+    delete = var.delete_timeout
+  }
+
+  default_node_pool {
+    name            = "default"
+    node_count      = var.agent_count
     vm_size         = var.agent_vm_size
-    os_type         = var.agent_os_type
     os_disk_size_gb = var.agent_disk_size
   }
   service_principal {

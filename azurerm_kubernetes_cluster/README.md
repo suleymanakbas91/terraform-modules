@@ -75,15 +75,10 @@ variable "agent_vm_size" {
   description = "The size of the virtual machines"
   default     = "Standard_DS3_v2"
 }
-variable "agent_os_type" {
-  type        = string
-  description = "The operating system type of the virtual machines"
-  default     = "Linux"
-}
 variable "kubernetes_version" {
   type        = string
   description = "Version of the Kubernetes (https://aka.ms/supported-version-list)"
-  default     = "1.12.8"
+  default     = "1.16.10"
 }
 variable "agent_disk_size" {
   type        = number
@@ -99,6 +94,21 @@ variable "aks_oms_agent" {
   type        = bool
   description = "Enable Log Analytics agent to monitor containers"
   default     = false
+}
+variable "create_timeout" {
+  type        = string  
+  description = "Timeout value for cluster creation"
+  default     = "30m"
+}
+variable "update_timeout" {
+  type        = string  
+  description = "Timeout value for cluster upgrade"
+  default     = "30m"
+}
+variable "delete_timeout" {
+  type        = string  
+  description = "Timeout value for cluster deletion"
+  default     = "20m"
 }
 ```
 ## Testing
